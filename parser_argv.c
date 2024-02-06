@@ -6,17 +6,10 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:27:34 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/05 19:45:10 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:29:12 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_argv(char **argv)
-{
-    int i;
-    int j;
-    
-    i = 1;
-    
-}
+

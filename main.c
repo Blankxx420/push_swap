@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:02:41 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/06 12:03:45 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/06 14:58:27 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ int main(int argc, char **argv)
 		ft_printf("%d\n", *(int *)current->content);
 		current = current->next;
 	}
-	ft_lstclear(&data.stack_a, free);
+	ft_lstclear(&data.stack_a, ft_free_tab);
 }

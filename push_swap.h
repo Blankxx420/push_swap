@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/06 10:59:16 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/06 13:35:41 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ typedef struct s_stack
 }				t_stack;
 
 void	init_stack(t_stack *stack, int argc, char **argv);
+char 	**split_argv(char **argv, int argc);
 #endif

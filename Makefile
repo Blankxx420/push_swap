@@ -4,9 +4,11 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra -g
 
-SRCS = push_swap.c
+SRCS = main.c \
+		init_stack.c
 
-OBJS = $(SRCS: .c=.o)
+
+OBJS = $(SRCS:.c=.o)
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a

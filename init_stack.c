@@ -1,35 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 11:02:41 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/06 12:03:45 by brguicho         ###   ########.fr       */
+/*   Created: 2024/02/06 11:08:17 by brguicho          #+#    #+#             */
+/*   Updated: 2024/02/06 12:00:47 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int argc, char **argv)
+void	init_stack(t_stack *stack, int argc, char **argv)
 {
-	t_stack data;
-	t_list *current;
-	
-	data.stack_a = NULL;
-	if (argc < 3)
+	int	i;
+	int	*num;
+
+	i = 1;
+	num = NULL;
+	while (i < argc)
 	{
-		ft_printf("%s",
-			"Wrong number of parameters: expected minimum 2 number");
-		return (1);
+		num = ft_calloc(sizeof(int *), 1);
+		*num = ft_atoi(argv[i]);
+		ft_printf("num:%d\n", *num);
+		ft_lstadd_back(&stack->stack_a, ft_lstnew(num));
+		i++;
 	}
-	init_stack(&data, argc, argv);
-	current = data.stack_a;
-	while (current)
-	{
-		ft_printf("%d\n", *(int *)current->content);
-		current = current->next;
-	}
-	ft_lstclear(&data.stack_a, free);
 }

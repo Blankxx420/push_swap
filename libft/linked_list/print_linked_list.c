@@ -1,35 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   print_linked_list.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 11:02:41 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/06 12:03:45 by brguicho         ###   ########.fr       */
+/*   Created: 2024/02/06 10:16:17 by brguicho          #+#    #+#             */
+/*   Updated: 2024/02/06 10:22:11 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int main(int argc, char **argv)
+void	ft_print_linked_list(t_list **lst)
 {
-	t_stack data;
-	t_list *current;
-	
-	data.stack_a = NULL;
-	if (argc < 3)
+	t_list *tmp;
+
+	tmp = (*lst);
+	while (tmp)
 	{
-		ft_printf("%s",
-			"Wrong number of parameters: expected minimum 2 number");
-		return (1);
+		ft_printf("%s\n", tmp->content);
 	}
-	init_stack(&data, argc, argv);
-	current = data.stack_a;
-	while (current)
-	{
-		ft_printf("%d\n", *(int *)current->content);
-		current = current->next;
-	}
-	ft_lstclear(&data.stack_a, free);
 }

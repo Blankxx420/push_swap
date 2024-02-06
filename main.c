@@ -1,24 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/05 19:10:13 by brguicho         ###   ########.fr       */
+/*   Created: 2024/02/05 19:16:29 by brguicho          #+#    #+#             */
+/*   Updated: 2024/02/05 19:27:11 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "push_swap.h"
 
-# include "libft/libft.h"
-
-typedef struct s_stack
+int	main(int argc, char **argv)
 {
-	int		nbr;
-	t_stack	*next;
-}				t_stack;
-
-#endif
+	if (argc < 3)
+	{
+		ft_printf("%s",
+			"Wrong number of parameters: expected minimum 2 number");
+	}
+	else
+	{
+		parse_argv(argv);
+	}
+}

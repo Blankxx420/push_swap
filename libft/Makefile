@@ -28,6 +28,7 @@ SRCS =	memory/ft_bzero.c \
 		memory/ft_memmove.c \
 		string/ft_strlcat.c \
 		conversion/ft_atoi.c \
+		conversion/ft_atol.c \
 		string/ft_strnstr.c \
 		string/ft_substr.c \
 		string/ft_strjoin.c \

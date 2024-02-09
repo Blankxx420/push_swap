@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:37:13 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/08 15:41:36 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/08 19:51:06 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,26 +40,26 @@ void	ss(t_list *stack_a, t_list *stack_b)
 	sb(stack_b);
 }
 
-void	pa(t_list *stack_a, t_list *stack_b)
+void	pa(t_list **stack_a, t_list **stack_b)
 {
 	t_list *tmp;
 	
-	if (!stack_b)
+	if (!(*stack_b))
 		return ;
-	tmp = stack_a;
-	stack_a = stack_b;
-	stack_a->next = tmp;
-	stack_b = stack_b->next;
+	tmp = (*stack_a);
+	(*stack_a) = (*stack_b);
+	(*stack_a)->next = tmp;
+	(*stack_b) = (*stack_b)->next;
 }
 
-void	pb(t_list *stack_a, t_list *stack_b)
+void	pb(t_list **stack_a, t_list **stack_b)
 {
 	t_list *tmp;
 	
-	if (!stack_a)
+	if (!(*stack_a))
 		return ;
-	tmp = stack_b->next;
-	stack_b = stack_a;
-	stack_b->next = tmp;
-	stack_a = stack_a->next;
+	tmp = (*stack_b);
+	(*stack_b) = (*stack_a);
+	(*stack_b)->next = tmp;
+	(*stack_a) = (*stack_a)->next;
 }

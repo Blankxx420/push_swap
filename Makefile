@@ -7,7 +7,8 @@ CFLAGS = -Wall -Werror -Wextra -g
 SRCS = main.c \
 		init_stack.c \
 		check_argv.c \
-		move.c
+		move.c \
+		move2.c
 
 
 OBJS = $(SRCS:.c=.o)

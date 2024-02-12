@@ -6,12 +6,13 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 09:49:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/12 15:05:35 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/12 15:34:13 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
+#include <limits.h>
 
 void	resolve_2_and_3(t_list **stack_a)
 {
@@ -43,18 +44,20 @@ void	resolve_2_and_3(t_list **stack_a)
 
 void	resolve_4_and_5(t_list **stack_a, t_list **stack_b)
 {
+	t_list *tmp;
 	long long little;
 	(void) stack_b;
 
-	little = 0;
-	while ((*stack_a))
+	little = LLONG_MAX;
+	tmp = *stack_a;
+	while (tmp)
 	{
-		if ((*stack_a)->next)
+		if (tmp->next)
 		{
-			if (*(long long int *)(*stack_a)->content < *(long long int *)(*stack_a)->next->content)
-				little =  *(long long int *)(*stack_a)->content;
-			(*stack_a) = (*stack_a)->next;
+			if (*(long long int *)tmp->content < little)
+				little =  *(long long int *)tmp->content;
 		}
+		tmp = tmp->next;
 	}
 	printf("%lld\n", little);
 }

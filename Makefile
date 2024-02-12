@@ -8,7 +8,8 @@ SRCS = main.c \
 		init_stack.c \
 		check_argv.c \
 		move.c \
-		move2.c
+		move2.c \
+		simple_solution.c
 
 
 OBJS = $(SRCS:.c=.o)

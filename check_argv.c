@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:27:34 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/08 13:56:07 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/12 09:37:00 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int	check_argv(char **args)
 	return (1);
 }
 
-int check_double_int(t_stack *stack, long long int * num)
+int check_double_int(t_stack *stack, long long int *num)
 {
 	t_list *current;
 	
 	current = stack->stack_a;
 	while (current)
 	{
-		if (*current->content == *num)
+		if (*(long long int *)current->content == *num)
 			return (1);
 		current = current->next;
 	}

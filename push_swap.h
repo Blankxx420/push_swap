@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/10 14:26:35 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:01:00 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ typedef struct s_stack
 
 void	init_stack(t_stack *stack, int argc, char **argv);
 char 	**split_argv(char **argv, int argc);
-int 	check_double_int(t_stack *stack, long long int * num);
+int 	check_double_int(t_stack *stack, long long int *num);
 int		check_argv(char **args);
 int 	check_len_nbr(char *arg);
 
+// move possible of stack
 void	sa(t_list *stack_a);
 void	sb(t_list *stack_b);
 void	ss(t_list *stack_a, t_list *stack_b);
@@ -36,4 +37,7 @@ void	ra(t_list **stack_a);
 void	rb(t_list **stack_a);
 void	rr(t_list *stack_a, t_list *stack_b);
 void	rra(t_list **stack_a);
+
+void	resolve_2_and_3(t_list **stack_a);
+void	resolve_4_and_5(t_list **stack_a, t_list **stack_b);
 #endif

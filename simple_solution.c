@@ -6,13 +6,11 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 09:49:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/12 15:34:13 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:37:44 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
-#include <limits.h>
 
 void	resolve_2_and_3(t_list **stack_a)
 {
@@ -42,14 +40,13 @@ void	resolve_2_and_3(t_list **stack_a)
 	}
 }
 
-void	resolve_4_and_5(t_list **stack_a, t_list **stack_b)
+long long int	get_little_min(t_list *stack_a)
 {
-	t_list *tmp;
-	long long little;
-	(void) stack_b;
-
+	long long	little;
+	t_list		*tmp;
+	
 	little = LLONG_MAX;
-	tmp = *stack_a;
+	tmp = stack_a;
 	while (tmp)
 	{
 		if (tmp->next)
@@ -59,5 +56,28 @@ void	resolve_4_and_5(t_list **stack_a, t_list **stack_b)
 		}
 		tmp = tmp->next;
 	}
-	printf("%lld\n", little);
+	return (little);
+}
+
+void	resolve_4_and_5(t_list **stack_a, t_list **stack_b)
+{
+	long long little;
+
+	little = get_little_min(*stack_a);
+	while (*(long long int *)(*stack_a)->content != little)
+	{
+		ra(stack_a);
+	}
+	pb(stack_a, stack_b);
+	little = get_little_min(*stack_a);
+	while (*(long long int *)(*stack_a)->content != little)
+	{
+		ra(stack_a);
+	}
+	pb(stack_a, stack_b);
+	resolve_2_and_3(stack_a);
+	pa(stack_a, stack_b);
+	pa(stack_a, stack_b);
+	if (*(long long int *)(*stack_a)->content > *(long long int *)(*stack_a)->next->content)
+		sa((*stack_a));
 }

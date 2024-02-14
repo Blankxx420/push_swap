@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:37:13 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/14 11:43:29 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:49:04 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	sa(t_list *stack_a)
 		return ; 
 	tmp = stack_a->content;
 	stack_a->content = stack_a->next->content;
-	stack_a->next ->content = tmp;	
+	stack_a->next ->content = tmp;
 }
 
 void	sb(t_list *stack_b)
@@ -31,7 +31,7 @@ void	sb(t_list *stack_b)
 		return ;
 	tmp = stack_b->content;
 	stack_b->content = stack_b->next->content;
-	stack_b->next ->content = tmp;	
+	stack_b->next ->content = tmp;
 }
 
 void	ss(t_list *stack_a, t_list *stack_b)

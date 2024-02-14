@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:16:10 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/12 11:44:17 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/14 11:49:18 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	rb(t_list **stack_b)
 	last = ft_lstlast(tmp);
 	(*stack_b) = (*stack_b)->next;
 	last->next = tmp;
-	last->next->next = NULL;	
+	last->next->next = NULL;
 }
 
 void	rr(t_list *stack_a, t_list *stack_b)

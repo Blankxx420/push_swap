@@ -9,7 +9,8 @@ SRCS = main.c \
 		check_argv.c \
 		move.c \
 		move2.c \
-		simple_solution.c
+		simple_solution.c \
+		solution.c \
 
 
 OBJS = $(SRCS:.c=.o)

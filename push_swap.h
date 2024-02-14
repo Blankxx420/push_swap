@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/14 11:36:57 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/14 14:37:15 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft/libft.h"
 # include <limits.h>
+#include <stdio.h> //norm
 
 typedef struct s_stack
 {
@@ -42,4 +43,8 @@ void			rra(t_list **stack_a);
 void			resolve_2_and_3(t_list **stack_a);
 void			resolve_4_and_5(t_list **stack_a, t_list **stack_b);
 long long int	get_little_min(t_list *stack_a);
+long long int 	*init_tab(t_list *stack_a);
+long long int 	*sort_tab(long long int *tab, int size);
+long long int	calculate_median(int size, long long int *tab);
+void			sort_stack(t_list **stack_a, t_list **stack_b, long long *tab);
 #endif

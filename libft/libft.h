@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 16:00:32 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/08 10:55:40 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:14:10 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 
 typedef struct s_list
 {
-	char			*content;
+	void			*content;
 	struct s_list	*next;
 }	t_list;
 

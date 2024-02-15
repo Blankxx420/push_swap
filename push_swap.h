@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/14 14:37:15 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:45:32 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_stack
 }				t_stack;
 
 void			init_stack(t_stack *stack, int argc, char **argv);
+void			put_in_stack(t_stack *stack, char **args, int j);
 char 			**split_argv(char **argv, int argc);
 int 			check_double_int(t_stack *stack, long long int *num);
 int				check_argv(char **args);
@@ -46,5 +47,7 @@ long long int	get_little_min(t_list *stack_a);
 long long int 	*init_tab(t_list *stack_a);
 long long int 	*sort_tab(long long int *tab, int size);
 long long int	calculate_median(int size, long long int *tab);
-void			sort_stack(t_list **stack_a, t_list **stack_b, long long *tab);
+void			presort_stack(t_list **stack_a, t_list **stack_b, long long *tab);
+int				get_position(long long *tab, void *content, int tablen);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:54:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/14 15:47:43 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/15 14:39:13 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,45 +52,83 @@ long long int *sort_tab(long long int *tab, int size)
 	return (tab);
 }
 
-long long int calculate_median(int size, long long int *tab)
-{
-	long long int median;
-	
-	median = (tab[size / 2] + tab[(size / 2) + 1]) / 2;
-	return (median);
-}
-
-void	sort_stack(t_list **stack_a, t_list **stack_b, long long *tab)
+int	get_position(long long *tab, void *content, int tablen)
 {
 	int median;
 	int quarter;
-	int tablen = ft_lstsize(*stack_a);
-	int i = 0;
+
 	median = tablen / 2;
 	quarter = tablen / 4;
-	median = calculate_median(ft_lstsize(*stack_a), tab);
-	while (i < tablen)
-	{
-		if (*(long long int *)(*stack_a)->content > tab[median])
+	if (*(long long int *)content >= tab[median])
 		{
-			if (*(long long int *)(*stack_a)->content < tab[quarter * 3])
+			if (*(long long int *)content < tab[quarter * 3])
+				return(3);
+			else
+				return (4);
+		}
+	if (*(long long int *)content <= tab[median])
+		{
+			if (*(long long int *)content > tab[quarter])
+				return (2);
+			else
+				return (1);
+		}
+	return (0);
+}
+
+void	presort_stack(t_list **stack_a, t_list **stack_b, long long *tab)
+{
+	int i;
+	int tablen;
+	int position;
+	
+	i = 0;
+	tablen = ft_lstsize(*stack_a);
+	while (i < (tablen + tablen / 2) - 2)
+	{
+		position = get_position(tab, (*stack_a)->content, tablen);
+		if (position == 1)
+		{
+			pb(stack_a, stack_b);
+			rb(stack_b);
+			ft_printf("rb\n");
+		}
+		if ( position == 2)
+			pb(stack_a, stack_b);
+		else if (position == 4 ||  position ==  3)
+		{
+			if (i < tablen)
 			{
-				pb(stack_a, stack_b);
-				ft_printf("pb\n");
-				rb(stack_b);
-				ft_printf("rb\n");
+				ra(stack_a);
+				ft_printf("ra\n");
 			}
 			else
 			{
-				pb(stack_a, stack_b);
-				ft_printf("pb\n");
+				if (position == 3)
+				{
+					pb(stack_a, stack_b);
+					rb(stack_b);
+					ft_printf("rb\n");
+				}
+				if ( position == 4)
+					pb(stack_a, stack_b);
 			}
-		}
-		else
-		{
-			ra(stack_a);
-			ft_printf("ra\n");
+			
 		}
 		i++;
+	}
+}
+
+int calculate_position(t_list **stack, void *content)
+{
+	int pos;
+	
+	while (stack)
+	{
+		if  (*(long long int *)content != *(long long int *)(*stack)->content)
+		{
+			pos++;
+		}
+		*stack = (*stack)->next;
 	}
 }

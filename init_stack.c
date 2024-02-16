@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:08:17 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/15 13:32:17 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:53:45 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,36 +23,37 @@ void	init_stack(t_stack *stack, int argc, char **argv)
 	{
 		j = 0;
 		args = ft_split(argv[i], ' ');
-		if (!check_argv(args))
+		if (!check_argv(args) || !args)
 		{
 			ft_printf("Error\n");
 			ft_free_tab(args);
 			ft_lstclear(&stack->stack_a, free);
-			return ;
+			return;
 		}
-		while (args[j])
+		while ( args[j] )
 		{
-			put_in_stack(stack, args, j);
+			put_in_stack(stack, args[j], args);
 			j++;
+			
 		}
 		i++;
 		ft_free_tab(args);
 	}
 }
 
-void	put_in_stack(t_stack *stack, char **args, int j)
+void	put_in_stack(t_stack *stack, char *arg, char **args)
 {
 	long long int	*num;
 
-	num = NULL;
 	num = ft_calloc(sizeof(long long int *), 1);
-	*num = ft_atol(args[j]);
+	*num = ft_atol(arg);
 	if (check_double_int(stack, num))
 	{
+		ft_printf("Error\n");
 		ft_free_tab(args);
 		ft_lstclear(&stack->stack_a, free);
 		free(num);
-		return ;
+		exit(1);
 	}
 	ft_lstadd_back(&stack->stack_a, ft_lstnew(num));
 }

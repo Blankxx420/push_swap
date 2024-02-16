@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 09:13:33 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/05 10:47:56 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/16 15:39:20 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,11 @@ void	ft_free_tab(char **tab)
 	while (tab[index])
 	{
 		free(tab[index]);
+		tab[index] = NULL;
 		index++;
 	}
 	free(tab);
+	tab = NULL;
 }
 
 char	**ft_split(char const *s, char c)
@@ -80,6 +82,6 @@ char	**ft_split(char const *s, char c)
 		if (tab[index] == NULL)
 			ft_free_tab(tab);
 		tab[index] = ft_memcpy(tab[index], s, len_word);
-	}
+	}	
 	return (tab);
 }

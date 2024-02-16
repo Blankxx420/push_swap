@@ -1,32 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 11:02:41 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 14:34:11 by brguicho         ###   ########.fr       */
+/*   Created: 2024/02/16 09:44:36 by brguicho          #+#    #+#             */
+/*   Updated: 2024/02/16 09:44:55 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int main(int argc, char **argv)
+void	pa(t_list **stack_a, t_list **stack_b)
 {
-	t_stack data;
-	long long int *tab;
+	t_list *tmp;
 	
-	data.stack_a = NULL;
-	data.stack_b = NULL;
-	init_stack(&data, argc, argv);
-	if(!data.stack_a)
-		return (0);
-	tab = init_tab(data.stack_a);
-	sort_tab(tab, ft_lstsize(data.stack_a));
-	presort_stack(&data.stack_a, &data.stack_b, tab);
-	ft_lstclear(&data.stack_a, free);
-	ft_lstclear(&data.stack_b, free);
-	free(tab);
+	if (!(*stack_b))
+		return ;
+	tmp = (*stack_b)->next;
+	(*stack_b)->next = (*stack_a);
+	(*stack_a) = (*stack_b);
+	(*stack_b) = tmp;
+	ft_printf("pa\n");
+}
+
+void	pb(t_list **stack_a, t_list **stack_b)
+{
+	t_list *tmp;
+	
+	if (!(*stack_a))
+		return ;
+	tmp = (*stack_a)->next;
+	(*stack_a)->next = (*stack_b);
+	(*stack_b) = (*stack_a);
+	(*stack_a) = tmp;
+	ft_printf("pb\n");
 }

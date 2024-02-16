@@ -7,10 +7,13 @@ CFLAGS = -Wall -Werror -Wextra -g
 SRCS = main.c \
 		init_stack.c \
 		check_argv.c \
-		move.c \
-		move2.c \
+		push.c \
+		swap.c \
+		rotate.c \
+		reverse_rotate.c \
 		simple_solution.c \
 		solution.c \
+		check_presort.c \
 
 
 OBJS = $(SRCS:.c=.o)

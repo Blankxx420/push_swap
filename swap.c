@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 11:02:41 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 14:34:11 by brguicho         ###   ########.fr       */
+/*   Created: 2024/02/08 14:37:13 by brguicho          #+#    #+#             */
+/*   Updated: 2024/02/16 09:50:08 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-int main(int argc, char **argv)
+void	swap(t_list *stack)
 {
-	t_stack data;
-	long long int *tab;
-	
-	data.stack_a = NULL;
-	data.stack_b = NULL;
-	init_stack(&data, argc, argv);
-	if(!data.stack_a)
-		return (0);
-	tab = init_tab(data.stack_a);
-	sort_tab(tab, ft_lstsize(data.stack_a));
-	presort_stack(&data.stack_a, &data.stack_b, tab);
-	ft_lstclear(&data.stack_a, free);
-	ft_lstclear(&data.stack_b, free);
-	free(tab);
+	char *tmp;
+
+	if (!stack || !stack->next)
+		return ; 
+	tmp = stack->content;
+	stack->content = stack->next->content;
+	stack->next->content = tmp;
+}
+
+void	sb(t_list *stack_b)
+{
+	swap(stack_b);
+	ft_putendl_fd("sb", 1);
+}
+
+void	sa(t_list *stack_a)
+{
+	swap(stack_a);
+	ft_putendl_fd("sa", 1);
+}
+
+void	ss(t_list *stack_a, t_list *stack_b)
+{
+	sa(stack_a);
+	sb(stack_b);
+	ft_putendl_fd("ss", 1);
 }

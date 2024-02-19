@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/19 13:22:39 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:33:29 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int				get_position(long long *tab, void *content, int tablen);
 void			check_position(t_list **stack_a, t_list **stack_b, int position);
 long long		get_min(t_list *stack);
 long long 		get_target(t_list *stack_a, t_list *stack_b, long long min);
+int				calculate_position(t_list *stack, long long content);
 
 #endif

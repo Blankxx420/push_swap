@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:54:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/19 13:35:00 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:46:59 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	presort_stack(t_list **stack_a, t_list **stack_b, long long *tab)
 	int i;
 	int tablen;
 	int position;
-	long long min;
+	//long long min;
 	i = 0;
 	tablen = ft_lstsize(*stack_a);
 	while (i < (tablen + tablen / 2) - 2)
@@ -105,13 +105,16 @@ void	presort_stack(t_list **stack_a, t_list **stack_b, long long *tab)
 		}
 		i++;
 	}
-	t_list *tmp2 = *stack_a;
 	t_list *tmp = *stack_b;
-	min = get_min(tmp2);
-	while (tmp)
+	t_list *tmp2 = *stack_b;
+	//t_list *tmp3 = *stack_a;
+	//min = get_min(tmp3);
+	while (tmp2)
 	{
-		get_target(tmp2, tmp, min);
-		tmp = tmp->next;
+		position = calculate_position(tmp, *(long long *)tmp2->content);// + calculate_position(tmp3, get_target(tmp3, tmp2, min));
+		
+		printf("%d\n", position);
+		tmp2 = tmp2->next;
 	}
 }
 
@@ -119,15 +122,16 @@ int calculate_position(t_list *stack, long long content)
 {
 	int pos;
 	
+	pos = 0;
 	while (stack)
 	{
-		if  (*(long long int *)content != *(long long int *)stack->content)
-		{
+		if (content != *(long long *)stack->content)
 			pos++;
-		}
+		if (content == *(long long *)stack->content)
+			break;
 		stack = stack->next;
 	}
-	return (pos);0000
+	return (pos);
 }
 
 long long get_target(t_list *stack_a, t_list *stack_b, long long min)

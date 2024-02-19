@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 09:38:18 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 09:39:06 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/19 10:22:33 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ void	rotate(t_list **stack)
 	t_list	*tmp;
 	t_list	*last;
 
-	if (!(*stack))
+	if (ft_lstsize(*stack) < 2)
 		return ;
 	tmp = (*stack);
 	last = ft_lstlast(tmp);
-	(*stack) = (*stack)->next;
+	(*stack) = tmp->next;
+	tmp->next = NULL;
 	last->next = tmp;
-	last->next->next = NULL;
 }
 
 void	ra(t_list **stack)

@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:54:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 14:31:06 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:35:00 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	presort_stack(t_list **stack_a, t_list **stack_b, long long *tab)
 	int i;
 	int tablen;
 	int position;
-	
+	long long min;
 	i = 0;
 	tablen = ft_lstsize(*stack_a);
 	while (i < (tablen + tablen / 2) - 2)
@@ -91,11 +91,11 @@ void	presort_stack(t_list **stack_a, t_list **stack_b, long long *tab)
 		if (position == 4 || position == 3)
 		{
 			if (i < tablen)
-				ra(stack_a);
-			else
-			{
-				if (position == 3)
-				{
+		 		ra(stack_a);
+		 	else
+		 	{
+		 		if (position == 3)
+		 		{
 					pb(stack_a, stack_b);
 					rb(stack_b);
 				}
@@ -105,62 +105,63 @@ void	presort_stack(t_list **stack_a, t_list **stack_b, long long *tab)
 		}
 		i++;
 	}
-	while (*stack_b)
+	t_list *tmp2 = *stack_a;
+	t_list *tmp = *stack_b;
+	min = get_min(tmp2);
+	while (tmp)
 	{
-		printf("la target de %lld est %lld\n", *(long long *)(*stack_b)->content, *(long long *)get_target(stack_a, stack_b));
-		*stack_b = (*stack_b)->next;
+		get_target(tmp2, tmp, min);
+		tmp = tmp->next;
 	}
 }
 
-int calculate_position(t_list **stack, void *content)
+int calculate_position(t_list *stack, long long content)
 {
 	int pos;
 	
 	while (stack)
 	{
-		if  (*(long long int *)content != *(long long int *)(*stack)->content)
+		if  (*(long long int *)content != *(long long int *)stack->content)
 		{
 			pos++;
 		}
-		*stack = (*stack)->next;
+		stack = stack->next;
 	}
-	return (pos);
+	return (pos);0000
 }
 
-void *get_target(t_list **stack_a, t_list **stack_b)
+long long get_target(t_list *stack_a, t_list *stack_b, long long min)
 {
-	void *target;
-	void *min;
+	long long target;
 	
-	min = get_min(stack_a);
-	target =  (*stack_b)->content;
-	while (*stack_a)
+	target = *(long long *)stack_b->content;
+	
+	while (stack_a)
 	{
-		if (*(long long *)(*stack_b)->content < *(long long *)(*stack_a)->content)
+		if (*(long long *)stack_b->content < *(long long *)stack_a->content)
 		{
-			if (*(long long *)(*stack_a)->content > *(long long *)target)
-				*stack_a = (*stack_a)->next;
-			target = (*stack_a)->content;
+			if (*(long long *)stack_a->content > target)
+				target = *(long long *)stack_a->content;
 		}
-		if (*(long long *)(*stack_b)->content > *(long long *)(*stack_a)->content)
-			target = (*stack_b)->content;
-		*stack_a = (*stack_a)->next;
+		else 
+			target = *(long long *)stack_b->content;
+		stack_a = stack_a->next;
 	}
-	if (*(long long *)(*stack_b)->content == *(long long *)target)
+	if (target == *(long long *)stack_b->content)
 			target = min;
 	return (target);
 }
 
-void *get_min(t_list **stack)
+long long get_min(t_list *stack)
 {
-	void *min;
+	long long min;
 
-	min = (*stack)->content;
-	while (*stack)
+	min = *(long long *)stack->content;
+	while (stack)
 	{
-		if (*(long long *)(*stack)->content < *(long long *)min)
-			min = (*stack)->content;
-		*stack = (*stack)->next;
+		if (*(long long *)stack->content < min)
+			min = *(long long *)stack->content;
+		stack = stack->next;
 	}
 	return (min);
 }

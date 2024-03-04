@@ -56,7 +56,8 @@ SRCS =	memory/ft_bzero.c \
 		ft_printf/ft_putstrlen.c \
 		ft_printf/ft_putunbrl.c \
 		get_next_line/get_next_line_bonus.c \
-		get_next_line/get_next_line_utils_bonus.c
+		get_next_line/get_next_line_utils_bonus.c \
+		linked_list/ft_print_linked_list.c
 
 all: $(NAME)
 

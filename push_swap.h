@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/19 14:33:29 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:02:56 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ long long int	get_little_min(t_list *stack_a);
 long long int 	*init_tab(t_list *stack_a);
 long long int 	*sort_tab(long long int *tab, int size);
 long long int	calculate_median(int size, long long int *tab);
-void			presort_stack(t_list **stack_a, t_list **stack_b, long long *tab);
+t_stack  		presort_stack(t_stack data, long long *tab);
 int				get_position(long long *tab, void *content, int tablen);
 void			check_position(t_list **stack_a, t_list **stack_b, int position);
 long long		get_min(t_list *stack);

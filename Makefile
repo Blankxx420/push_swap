@@ -12,6 +12,7 @@ SRCS = main.c \
 		rotate.c \
 		reverse_rotate.c \
 		simple_solution.c \
+		presort.c \
 		solution.c \
 		check_presort.c \
 

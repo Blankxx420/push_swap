@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:02:41 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 14:34:11 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/04 10:03:07 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int main(int argc, char **argv)
 		return (0);
 	tab = init_tab(data.stack_a);
 	sort_tab(tab, ft_lstsize(data.stack_a));
-	presort_stack(&data.stack_a, &data.stack_b, tab);
+	data = presort_stack(data, tab);
+	ft_print_linked_list(&data.stack_a);
 	ft_lstclear(&data.stack_a, free);
 	ft_lstclear(&data.stack_b, free);
 	free(tab);

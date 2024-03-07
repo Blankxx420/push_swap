@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:31:37 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/05 14:00:58 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/07 13:34:32 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,10 @@ long long get_target(t_list *stack_a, t_list *stack_b, long long min)
 	
 	while (stack_a)
 	{
-		if (*(long long *)stack_b->content < *(long long *)stack_a->content)
+		if (*(long long *)stack_b->content > *(long long *)stack_a->content)
 		{
-			if (*(long long *)stack_a->content > target)
 				target = *(long long *)stack_a->content;
+				break;
 		}
 		else 
 			target = *(long long *)stack_b->content;
@@ -48,30 +48,38 @@ long long get_min(t_list *stack)
 	return (min);
 }
 
-int	calculate_best_move(t_stack data)
+long long calculate_best_move(t_stack data)
 {
 	int best;
-	long long min;
 	int	move;
-	int lst_size;
+	long long num_best;
 	int i;
+	long long min = get_min(data.stack_a);
+	t_list *start = data.stack_b;
 
 	best = INT_MAX;
-	lst_size = ft_lstsize(data.stack_b);
 	i = 0;
-	while (data.stack_b);
+	num_best = 0;
+	
+	while (data.stack_b)
 	{
-		min = get_min(data.stack_a);
-		if (i > lst_size / 2)
-			move = (calculate_position(data.stack_b, get_target(data.stack_a, data.stack_b, min))
-				+ calculate_position(data.stack_a, get_target(data.stack_a, data.stack_b, min))) - lst_size + 1;
+		if (i > (ft_lstsize(start)/ 2))
+		{
+			move = ft_lstsize(start) - ((calculate_position(start, *(long long*)data.stack_b->content)
+				+ calculate_position(data.stack_a,get_target(data.stack_a, data.stack_b, min)))) + 2;
+		}
 		else
-			move = (calculate_position(data.stack_b, get_target(data.stack_a, data.stack_b, min))
-				+ calculate_position(data.stack_a, get_target(data.stack_a, data.stack_b, min))) - 1;
+			move = calculate_position(start,  *(long long*)data.stack_b->content)
+				+ calculate_position(data.stack_a, get_target(data.stack_a, data.stack_b, min));
+		printf("move : %d\n", move);
+		printf("target : %lld \n", get_target(data.stack_a, data.stack_b, min));
 		if (move < best)
+		{
 			best = move;
+			num_best = *(long long *)data.stack_b->content;
+		}
 		data.stack_b = data.stack_b->next;
 		i++;	
 	}
-	return (best);
+	return (num_best);
 }

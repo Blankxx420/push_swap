@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:08:17 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 15:53:45 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/06 14:25:34 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	init_stack(t_stack *stack, int argc, char **argv)
 			ft_lstclear(&stack->stack_a, free);
 			return;
 		}
-		while ( args[j] )
+		while (args[j])
 		{
 			put_in_stack(stack, args[j], args);
 			j++;

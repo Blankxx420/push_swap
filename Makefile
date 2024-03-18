@@ -15,6 +15,7 @@ SRCS = main.c \
 		presort.c \
 		solution.c \
 		check_presort.c \
+		utils.c \
 
 
 OBJS = $(SRCS:.c=.o)

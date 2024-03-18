@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solution.c                                         :+:      :+:    :+:   */
+/*   presort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:54:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/04 10:31:21 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:35:31 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,17 @@ t_stack	presort_stack(t_stack data, long long *tab)
 		if (position == 4 || position == 3)
 		{
 			if (i < tablen)
+			{
 		 		ra(&data.stack_a);
+				ft_printf("ra\n");
+			}
 		 	else
 		 	{
 		 		if (position == 3)
 		 		{
 					pb(&data.stack_a, &data.stack_b);
 					rb(&data.stack_b);
+					ft_printf("rb\n");
 				}
 				if (position == 4)
 					pb(&data.stack_a, &data.stack_b);

@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:31:37 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/07 13:34:32 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/18 09:50:14 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 long long get_target(t_list *stack_a, t_list *stack_b, long long min)
 {
 	long long target;
+	t_list *tmp;
+
+	tmp = stack_a;
 	
 	target = *(long long *)stack_b->content;
 	
@@ -22,7 +25,7 @@ long long get_target(t_list *stack_a, t_list *stack_b, long long min)
 	{
 		if (*(long long *)stack_b->content > *(long long *)stack_a->content)
 		{
-				target = *(long long *)stack_a->content;
+				target = get_nearest_max(tmp, stack_b->content);
 				break;
 		}
 		else 
@@ -48,38 +51,120 @@ long long get_min(t_list *stack)
 	return (min);
 }
 
-long long calculate_best_move(t_stack data)
+t_stack calculate_best_move(t_stack data)
 {
-	int best;
-	int	move;
-	long long num_best;
+	t_best best;
+	t_best current;
+	t_list *current_st;
+	t_list *b;
 	int i;
-	long long min = get_min(data.stack_a);
-	t_list *start = data.stack_b;
+	int j;
+	long long target;
 
-	best = INT_MAX;
 	i = 0;
-	num_best = 0;
-	
-	while (data.stack_b)
+	current.size_a = ft_lstsize(data.stack_a);
+	current.size_b = ft_lstsize(data.stack_b);
+	best.nb_total = INT_MAX;
+	b = data.stack_b;
+	while (b)
 	{
-		if (i > (ft_lstsize(start)/ 2))
-		{
-			move = ft_lstsize(start) - ((calculate_position(start, *(long long*)data.stack_b->content)
-				+ calculate_position(data.stack_a,get_target(data.stack_a, data.stack_b, min)))) + 2;
+		j = 0;
+		current_st = data.stack_a;
+		target = get_target(data.stack_a, b, get_min(data.stack_a));
+		while (current_st)
+		{	
+			if (*(long long *)current_st->content == target)
+				break;
+			j++;
+			current_st = current_st->next;
 		}
-		else
-			move = calculate_position(start,  *(long long*)data.stack_b->content)
-				+ calculate_position(data.stack_a, get_target(data.stack_a, data.stack_b, min));
-		printf("move : %d\n", move);
-		printf("target : %lld \n", get_target(data.stack_a, data.stack_b, min));
-		if (move < best)
-		{
-			best = move;
-			num_best = *(long long *)data.stack_b->content;
-		}
-		data.stack_b = data.stack_b->next;
-		i++;	
+		current.nb_b = i;
+		current.nb_a = j;
+		get_type(i, j, &current);
+		current.nb_total = get_total(&current);
+		if (current.nb_total <= best.nb_total)
+			best = current;
+		i++;
+		b = b->next;
 	}
-	return (num_best);
+	data = play_move(best, data);
+	if (data.stack_b)
+	{
+		calculate_best_move(data);
+	}
+	return (data);
+}
+
+void	get_type(int i, int j, t_best *current)
+{
+	if (i > current->size_b / 2)
+		current->type_b = 2;
+	else
+		current->type_b = 1;
+	if (j > current->size_a / 2)
+		current->type_a = 2;
+	else
+		current->type_b = 1;
+}
+
+t_stack play_move(t_best best, t_stack data)
+{
+	printf("a:%d, b:%d\n", best.nb_a, best.nb_b);
+	while ((best.nb_a > 0) | (best.nb_b > 0))
+	{
+		
+		if (best.type_a != best.type_b)
+		{
+			ra(&data.stack_a);
+			ft_putendl_fd("ra", 1);
+			best.nb_a--;
+			rb(&data.stack_b);
+			ft_putendl_fd("rb", 1);
+			best.nb_b--;
+		}
+		if (best.type_a == best.type_b && best.type_a == 1)
+		{
+			if (best.nb_a > 0 && best.nb_b > 0)
+			{
+				rr(data.stack_a, data.stack_b);
+				best.nb_b--;
+				best.nb_a--;
+			}
+			if (best.nb_a < 0 && best.nb_b > 0)
+			{
+				rb(&data.stack_b);
+				ft_putendl_fd("rb", 1);
+				best.nb_b--;
+			}
+			if (best.nb_a > 0 && best.nb_b < 0)
+			{
+				ra(&data.stack_a);
+				ft_putendl_fd("ra", 1);
+				best.nb_a--;
+			}
+		}
+		if (best.type_a == best.type_b && best.type_a == 2)
+		{
+			if (best.nb_a > 0 && best.nb_b > 0)
+			{
+				rrr(&data.stack_a, &data.stack_b);
+				best.nb_b--;
+				best.nb_a--;
+			}
+			if (best.nb_a < 0 && best.nb_b > 0)
+			{
+				rrb(&data.stack_b);
+				ft_putendl_fd("rrb", 1);
+				best.nb_b--;
+			}
+			if (best.nb_a > 0 && best.nb_b < 0)
+			{
+				rra(&data.stack_a);
+				ft_putendl_fd("rra", 1);
+				best.nb_a--;
+			}
+		}
+	}
+	pa(&data.stack_a, &data.stack_b);
+	return(data);
 }

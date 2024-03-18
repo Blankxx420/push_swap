@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   move2.c                                            :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:16:10 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 09:40:17 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:35:46 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,11 @@ void	reverse_rotate(t_list **stack)
 void	rrb(t_list **stack)
 {
 	reverse_rotate(stack);
-	ft_putendl_fd("rrb", 1);
 }
 
 void	rra(t_list **stack)
 {
 	reverse_rotate(stack);
-	ft_putendl_fd("rra", 1);
 }
 
 void	rrr(t_list **stack_a, t_list **stack_b)

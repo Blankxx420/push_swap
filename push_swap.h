@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/06 20:31:38 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/18 09:12:06 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,18 @@ typedef struct s_stack
 	t_list	*stack_a;
 	t_list	*stack_b;
 }				t_stack;
+
+
+typedef struct s_best
+{
+	int nb_a;
+	int type_a;
+	int type_b;
+	int nb_b;
+	int nb_total;
+	int size_a;
+	int size_b;
+}				t_best;
 
 void			init_stack(t_stack *stack, int argc, char **argv);
 void			put_in_stack(t_stack *stack, char *arg, char **args);
@@ -57,6 +69,11 @@ void			check_position(t_list **stack_a, t_list **stack_b, int position);
 long long		get_min(t_list *stack);
 long long 		get_target(t_list *stack_a, t_list *stack_b, long long min);
 int				calculate_position(t_list *stack, long long content);
-long long 		calculate_best_move(t_stack data);
+t_stack			calculate_best_move(t_stack data);
+long long int	get_max(t_list *stack_a);
+long long int	get_nearest_max(t_list *stack_a, void *content);
+int 			get_total(t_best *current);
+t_stack 		play_move(t_best best, t_stack data);
+void			get_type(int i, int j, t_best *current);
 
 #endif

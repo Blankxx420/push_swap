@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 14:16:10 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/14 14:35:46 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:29:31 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ void	reverse_rotate(t_list **stack)
 	t_list	*tmp;
 	t_list	*last;
 
+	if (ft_lstsize(*stack) < 2)
+		return ;
 	tmp = *stack;
 	last = ft_lstlast(tmp);
 	while (tmp)
 	{
 		if (tmp->next->next == NULL)
 		{
-			 tmp->next = NULL;
-			 break ;
+			tmp->next = NULL;
+			break ;
 		}
 		tmp = tmp->next;
 	}

@@ -6,34 +6,31 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/04 10:31:37 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/18 09:50:14 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/28 23:13:44 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long long get_target(t_list *stack_a, t_list *stack_b, long long min)
+long long	get_target(t_list *stack_a, t_list *stack_b, long long min)
 {
-	long long target;
-	t_list *tmp;
+	long long	target;
+	t_list		*tmp;
 
 	tmp = stack_a;
-	
 	target = *(long long *)stack_b->content;
-	
 	while (stack_a)
 	{
-		if (*(long long *)stack_b->content > *(long long *)stack_a->content)
+		if (*(long long *)stack_b->content
+			< *(long long *)stack_a->content)
 		{
 				target = get_nearest_max(tmp, stack_b->content);
 				break;
 		}
-		else 
-			target = *(long long *)stack_b->content;
+		else
+			target = min;
 		stack_a = stack_a->next;
 	}
-	if (target == *(long long *)stack_b->content)
-			target = min;
 	return (target);
 }
 
@@ -41,7 +38,7 @@ long long get_min(t_list *stack)
 {
 	long long min;
 
-	min = *(long long *)stack->content;
+	min = INT_MAX;
 	while (stack)
 	{
 		if (*(long long *)stack->content < min)
@@ -51,7 +48,7 @@ long long get_min(t_list *stack)
 	return (min);
 }
 
-t_stack calculate_best_move(t_stack data)
+void calculate_best_move(t_stack data)
 {
 	t_best best;
 	t_best current;
@@ -70,11 +67,13 @@ t_stack calculate_best_move(t_stack data)
 	{
 		j = 0;
 		current_st = data.stack_a;
-		target = get_target(data.stack_a, b, get_min(data.stack_a));
+		target = get_target(current_st, b, get_min(data.stack_a));
 		while (current_st)
 		{	
 			if (*(long long *)current_st->content == target)
-				break;
+			{
+				break ;
+			}
 			j++;
 			current_st = current_st->next;
 		}
@@ -82,89 +81,73 @@ t_stack calculate_best_move(t_stack data)
 		current.nb_a = j;
 		get_type(i, j, &current);
 		current.nb_total = get_total(&current);
-		if (current.nb_total <= best.nb_total)
+		if (current.nb_total < best.nb_total)
 			best = current;
 		i++;
 		b = b->next;
 	}
-	data = play_move(best, data);
+	play_move(best, &data);
 	if (data.stack_b)
 	{
+		b = data.stack_b;
 		calculate_best_move(data);
 	}
-	return (data);
+	ft_last_move(data.stack_a);
 }
 
 void	get_type(int i, int j, t_best *current)
 {
 	if (i > current->size_b / 2)
+	{
 		current->type_b = 2;
+		current->nb_b = current->size_b - i;
+	}
 	else
 		current->type_b = 1;
 	if (j > current->size_a / 2)
+	{
 		current->type_a = 2;
+		current->nb_a = current->size_a - j;
+	}
 	else
-		current->type_b = 1;
+		current->type_a = 1;
 }
 
-t_stack play_move(t_best best, t_stack data)
+void play_move(t_best best, t_stack *data)
 {
-	printf("a:%d, b:%d\n", best.nb_a, best.nb_b);
 	while ((best.nb_a > 0) | (best.nb_b > 0))
 	{
-		
-		if (best.type_a != best.type_b)
+		if (best.nb_a > 0 && best.nb_b
+				> 0 && best.type_a == best.type_b && best.type_a == 1)
+			rr(&data->stack_a, &data->stack_b);
+		else if (best.nb_a > 0 && best.nb_b > 0
+			&& best.type_a == best.type_b && best.type_a == 2)
+			rrr(&data->stack_a, &data->stack_b);
+		else
 		{
-			ra(&data.stack_a);
-			ft_putendl_fd("ra", 1);
-			best.nb_a--;
-			rb(&data.stack_b);
-			ft_putendl_fd("rb", 1);
-			best.nb_b--;
-		}
-		if (best.type_a == best.type_b && best.type_a == 1)
-		{
-			if (best.nb_a > 0 && best.nb_b > 0)
+			if (best.nb_a > 0 && best.type_a == 1)
 			{
-				rr(data.stack_a, data.stack_b);
-				best.nb_b--;
-				best.nb_a--;
+				ra(&data->stack_a);
+	 			ft_putendl_fd("ra", 1);
 			}
-			if (best.nb_a < 0 && best.nb_b > 0)
+			if (best.nb_a > 0 && best.type_a == 2)
 			{
-				rb(&data.stack_b);
-				ft_putendl_fd("rb", 1);
-				best.nb_b--;
+				rra(&data->stack_a);
+	 			ft_putendl_fd("rra", 1);
 			}
-			if (best.nb_a > 0 && best.nb_b < 0)
+			if (best.nb_b > 0 && best.type_b == 1)
 			{
-				ra(&data.stack_a);
-				ft_putendl_fd("ra", 1);
-				best.nb_a--;
+				rb(&data->stack_b);
+	 			ft_putendl_fd("rb", 1);
+			}
+			if (best.nb_b > 0 && best.type_b == 2)
+			{
+				rrb(&data->stack_b);
+	 			ft_putendl_fd("rrb", 1);
 			}
 		}
-		if (best.type_a == best.type_b && best.type_a == 2)
-		{
-			if (best.nb_a > 0 && best.nb_b > 0)
-			{
-				rrr(&data.stack_a, &data.stack_b);
-				best.nb_b--;
-				best.nb_a--;
-			}
-			if (best.nb_a < 0 && best.nb_b > 0)
-			{
-				rrb(&data.stack_b);
-				ft_putendl_fd("rrb", 1);
-				best.nb_b--;
-			}
-			if (best.nb_a > 0 && best.nb_b < 0)
-			{
-				rra(&data.stack_a);
-				ft_putendl_fd("rra", 1);
-				best.nb_a--;
-			}
-		}
+		best.nb_a--;
+		best.nb_b--;
 	}
-	pa(&data.stack_a, &data.stack_b);
-	return(data);
+	pa(&data->stack_a, &data->stack_b);
 }

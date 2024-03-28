@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:04:54 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/14 15:20:02 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:36:06 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ long long int	get_max(t_list *stack_a)
 {
 	long long	max;
 	t_list		*tmp;
-	
+
 	max = LLONG_MIN;
 	tmp = stack_a;
 	while (tmp)
@@ -24,7 +24,7 @@ long long int	get_max(t_list *stack_a)
 		if (tmp->next)
 		{
 			if (*(long long int *)tmp->content > max)
-				max =  *(long long int *)tmp->content;
+				max = *(long long int *)tmp->content;
 		}
 		tmp = tmp->next;
 	}
@@ -33,13 +33,14 @@ long long int	get_max(t_list *stack_a)
 
 long long int	get_nearest_max(t_list *stack_a, void *content)
 {
-	long long max;
-	
-	max = get_max(stack_a);
+	long long	max;
 
-	while(stack_a)
+	max = LLONG_MAX;
+	while (stack_a)
 	{
-		if (*(long long *)stack_a->content > *(long long *)content && *(long long *)stack_a->content < max)
+		if (*(long long *)stack_a->content
+			<= max && *(long long *)stack_a->content
+			> *(long long *)content)
 		{
 			max = *(long long *)stack_a->content;
 		}
@@ -48,7 +49,7 @@ long long int	get_nearest_max(t_list *stack_a, void *content)
 	return (max);
 }
 
-int get_total(t_best *current)
+int	get_total(t_best *current)
 {
 	if (current->type_a == current->type_b)
 	{
@@ -57,7 +58,7 @@ int get_total(t_best *current)
 		else
 			current->nb_total = current->nb_b;
 	}
-	else 
+	else
 		current->nb_total = current->nb_a + current->nb_b;
 	return (current->nb_total);
 }

@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/08 14:37:13 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 09:50:08 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:42:16 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	swap(t_list *stack)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (!stack || !stack->next)
-		return ; 
+		return ;
 	tmp = stack->content;
 	stack->content = stack->next->content;
 	stack->next->content = tmp;

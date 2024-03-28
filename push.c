@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 09:44:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/02/16 09:44:55 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/28 22:28:53 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	pa(t_list **stack_a, t_list **stack_b)
 {
-	t_list *tmp;
-	
+	t_list	*tmp;
+
 	if (!(*stack_b))
 		return ;
 	tmp = (*stack_b)->next;
@@ -27,8 +27,8 @@ void	pa(t_list **stack_a, t_list **stack_b)
 
 void	pb(t_list **stack_a, t_list **stack_b)
 {
-	t_list *tmp;
-	
+	t_list	*tmp;
+
 	if (!(*stack_a))
 		return ;
 	tmp = (*stack_a)->next;

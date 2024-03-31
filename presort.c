@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/14 11:54:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/28 22:16:46 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:57:12 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,29 +79,28 @@ int	get_position(long long *tab, void *content, int tablen)
 	return (0);
 }
 
-t_stack	presort_stack(t_stack data, long long *tab)
+t_stack	*presort_stack(t_stack *data, long long *tab)
 {
 	int	i;
 	int	tablen;
 	int	position;
 
 	i = 0;
-	tablen = ft_lstsize(data.stack_a);
+	tablen = ft_lstsize(data->stack_a);
 	while (i < (tablen + tablen / 2) - 2)
 	{
-		position = get_position(tab, data.stack_a->content, tablen);
-		check_position_1_and_2(&data.stack_a, &data.stack_b, position);
+		position = get_position(tab, data->stack_a->content, tablen);
+		check_position_1_and_2(&data->stack_a, &data->stack_b, position);
 		if (position == 4 || position == 3)
 		{
 			if (i < tablen)
 			{
-				ra(&data.stack_a);
+				ra(&data->stack_a);
 				ft_printf("ra\n");
 			}
 			else
-			{
-				check_position_3_and_4(&data.stack_a, &data.stack_b, position);
-			}
+				check_position_3_and_4(&data->stack_a,
+					&data->stack_b, position);
 		}
 		i++;
 	}

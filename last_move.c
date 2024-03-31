@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   last_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/06 11:02:41 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/31 23:31:23 by brguicho         ###   ########.fr       */
+/*   Created: 2024/03/31 22:36:32 by brguicho          #+#    #+#             */
+/*   Updated: 2024/03/31 23:43:46 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	ft_last_move(t_list **stack_a)
 {
-	t_stack	data;
+	long long	min;
+	int			i;
+	int			size;
+	t_list		*current;
 
-	data.stack_a = NULL;
-	data.stack_b = NULL;
-	init_stack(&data, argc, argv);
-	if (!data.stack_a)
-		return (0);
-	if (push_swap(&data) == 1)
+	current = *stack_a;
+	size = ft_lstsize(*stack_a);
+	ft_printf("size dans lastmove %i\n", size);
+	min = get_min(*stack_a);
+	i = 0;
+	while (current && *(long long *)current->content != min)
 	{
-		write(2, "Error\n", 6);
-		return (1);
+		i++;
+		current = current->next;
 	}
-	ft_printf("size :%i\n", ft_lstsize(data.stack_a));
-	ft_printf("size :%i\n", ft_lstsize(data.stack_b));
-	ft_lstclear(&data.stack_a, free);
+	if (i > size / 2)
+	{
+		i = size - i;
+		loop_rra(stack_a, i);
+	}
+	else
+	{
+		loop_ra(stack_a, i);
+	}
 }

@@ -17,6 +17,8 @@ SRCS = main.c \
 		check_presort.c \
 		utils.c \
 		push_swap.c \
+		last_move.c \
+		utils2.c
 
 
 OBJS = $(SRCS:.c=.o)

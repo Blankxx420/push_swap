@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 21:19:34 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/28 22:37:50 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:00:45 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,20 @@ int	push_swap(t_stack *data)
 	return (0);
 }
 
-int	big_sort(t_stack data)
+int	big_sort(t_stack *data)
 {
 	long long int	*tab;
+	t_best			best;
+	t_best			current;
 
-	tab = init_tab(data.stack_a);
+	tab = init_tab(data->stack_a);
 	if (!tab)
 		return (1);
-	sort_tab(tab, ft_lstsize(data.stack_a));
+	sort_tab(tab, ft_lstsize(data->stack_a));
 	data = presort_stack(data, tab);
-	resolve_2_and_3(&data.stack_a);
-	calculate_best_move(data);
+	resolve_2_and_3(&data->stack_a);
+	calculate_best_move(data, best, current);
+	ft_last_move(&data->stack_a);
 	free(tab);
 	return (0);
 }

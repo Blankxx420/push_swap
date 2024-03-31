@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/28 22:41:22 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/01 00:24:48 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "libft/libft.h"
 # include <limits.h>
-# include <stdio.h> //norm
 
 typedef struct s_stack
 {
@@ -62,21 +61,26 @@ long long int	get_little_min(t_list *stack_a);
 long long int	*init_tab(t_list *stack_a);
 long long int	*sort_tab(long long int *tab, int size);
 long long int	calculate_median(int size, long long int *tab);
-t_stack			presort_stack(t_stack data, long long *tab);
+t_stack			*presort_stack(t_stack *data, long long *tab);
 int				get_position(long long *tab, void *content, int tablen);
-void			check_position(t_list **stack_a,
+void			check_position_1_and_2(t_list **stack_a,
+					t_list **stack_b, int position);
+void			check_position_3_and_4(t_list **stack_a,
 					t_list **stack_b, int position);
 long long		get_min(t_list *stack);
 long long		get_target(t_list *stack_a, t_list *stack_b, long long min);
 int				calculate_position(t_list *stack, long long content);
-void			calculate_best_move(t_stack data);
+void			calculate_best_move(t_stack *data, t_best best, t_best current);
 long long int	get_max(t_list *stack_a);
 long long int	get_nearest_max(t_list *stack_a, void *content);
 int				get_total(t_best *current);
 void			play_move(t_best best, t_stack *data);
 void			get_type(int i, int j, t_best *current);
-void			ft_last_move(t_list *stack_a);
+void			ft_last_move(t_list **stack_a);
 int				big_sort(t_stack *data);
 int				push_swap(t_stack *data);
-
+void			loop_rra(t_list **stack_a, int i);
+void			loop_ra(t_list **stack_a, int i);
+void			check_move(t_best best, t_stack *data);
+int				get_position_target(t_stack *data, t_list *b, int j);
 #endif

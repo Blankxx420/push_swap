@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 11:04:54 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/28 22:36:06 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/03/31 23:42:43 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,24 @@ int	get_total(t_best *current)
 	else
 		current->nb_total = current->nb_a + current->nb_b;
 	return (current->nb_total);
+}
+
+void	loop_rra(t_list **stack_a, int i)
+{
+	while (i > 0)
+	{
+		rra(stack_a);
+		write(1, "rra\n", 4);
+		i--;
+	}
+}
+
+void	loop_ra(t_list **stack_a, int i)
+{
+	while (i > 0)
+	{
+		ra(stack_a);
+		write(1, "ra\n", 3);
+		i--;
+	}
 }

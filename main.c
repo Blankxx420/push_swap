@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:02:41 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/31 23:31:23 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:00:36 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,5 @@ int	main(int argc, char **argv)
 		write(2, "Error\n", 6);
 		return (1);
 	}
-	ft_printf("size :%i\n", ft_lstsize(data.stack_a));
-	ft_printf("size :%i\n", ft_lstsize(data.stack_b));
 	ft_lstclear(&data.stack_a, free);
 }

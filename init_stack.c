@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 11:08:17 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/31 23:56:06 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/02 21:59:32 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	init_stack(t_stack *stack, int argc, char **argv)
 void	put_in_stack(t_stack *stack, char *arg, char **args)
 {
 	long long int	*num;
+	t_list			*tmp;
 
 	num = ft_calloc(sizeof(long long int *), 1);
 	*num = ft_atol(arg);
@@ -54,5 +55,14 @@ void	put_in_stack(t_stack *stack, char *arg, char **args)
 		free(num);
 		exit(1);
 	}
-	ft_lstadd_back(&stack->stack_a, ft_lstnew(num));
+	tmp = ft_lstnew(num);
+	if (!tmp)
+	{
+		write(2, "Error\n", 6);
+		ft_free_tab(args);
+		ft_lstclear(&stack->stack_a, free);
+		free(num);
+		exit(1);
+	}
+	ft_lstadd_back(&stack->stack_a, tmp);
 }

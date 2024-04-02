@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 22:36:32 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/31 23:43:46 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/02 22:00:27 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	ft_last_move(t_list **stack_a)
 
 	current = *stack_a;
 	size = ft_lstsize(*stack_a);
-	ft_printf("size dans lastmove %i\n", size);
 	min = get_min(*stack_a);
 	i = 0;
 	while (current && *(long long *)current->content != min)

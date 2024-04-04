@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 19:27:34 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/28 21:42:43 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:17:20 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,11 @@ int	check_argv(char **args)
 			if ((args[i][j] == '+' || args[i][j] == '-')
 				&& !ft_isdigit(args[i][j + 1]))
 				return (0);
-			if (j != 0 && (args[i][j] == '+' || args[i][j] == '-'
-				|| args[i][j] == '.') && ft_isdigit(args[i][j - 1]))
+			if (j != 0 && (args[i][j] >= '!' && args[i][j] <= '/')
+				&& ft_isdigit(args[i][j - 1]))
 				return (0);
-			if (ft_isalpha(args[i][j]))
+			if (args[i][j] != '-' && args[i][j] != '+'
+				&& !ft_isdigit(args[i][j]))
 				return (0);
 			j++;
 		}

@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 18:06:15 by brguicho          #+#    #+#             */
-/*   Updated: 2024/04/01 00:24:48 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:08:43 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void			rrr(t_list **stack_a, t_list **stack_b);
 void			resolve_2_and_3(t_list **stack_a);
 void			resolve_4_and_5(t_list **stack_a, t_list **stack_b);
 long long int	get_little_min(t_list *stack_a);
+int				is_sorted(t_stack *data);
 long long int	*init_tab(t_list *stack_a);
 long long int	*sort_tab(long long int *tab, int size);
 long long int	calculate_median(int size, long long int *tab);

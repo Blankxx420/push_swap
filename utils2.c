@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 22:58:53 by brguicho          #+#    #+#             */
-/*   Updated: 2024/04/01 00:25:22 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:15:01 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,16 @@ int	get_position_target(t_stack *data, t_list *b, int j)
 		current_st = current_st->next;
 	}
 	return (j);
+}
+
+int	is_sorted(t_stack *data)
+{
+	while (data->stack_a->next)
+	{
+		if (*(long long *)data->stack_a->content
+			>= *(long long *)data->stack_a->next->content)
+			return (0);
+		data->stack_a = data->stack_a->next;
+	}
+	return (1);
 }

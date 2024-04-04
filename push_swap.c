@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 21:19:34 by brguicho          #+#    #+#             */
-/*   Updated: 2024/04/01 00:00:45 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/04 14:08:19 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	push_swap(t_stack *data)
 	int	size_stack;
 
 	size_stack = ft_lstsize(data->stack_a);
+	if (is_sorted(data))
+		return (0);
 	if (size_stack == 2 || size_stack == 3)
 	{
 		resolve_2_and_3(&data->stack_a);

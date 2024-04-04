@@ -6,7 +6,7 @@
 /*   By: brguicho <brguicho@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 09:49:36 by brguicho          #+#    #+#             */
-/*   Updated: 2024/03/28 22:37:24 by brguicho         ###   ########.fr       */
+/*   Updated: 2024/04/04 11:50:58 by brguicho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,39 +38,22 @@ void	resolve_2_and_3(t_list **stack_a)
 	}
 }
 
-long long int	get_little_min(t_list *stack_a)
-{
-	long long	little;
-	t_list		*tmp;
-
-	little = LLONG_MAX;
-	tmp = stack_a;
-	while (tmp)
-	{
-		if (tmp->next)
-		{
-			if (*(long long int *)tmp->content < little)
-				little = *(long long int *)tmp->content;
-		}
-		tmp = tmp->next;
-	}
-	return (little);
-}
-
 void	resolve_4_and_5(t_list **stack_a, t_list **stack_b)
 {
 	long long	little;
 
-	little = get_little_min(*stack_a);
+	little = get_min(*stack_a);
 	while (*(long long int *)(*stack_a)->content != little)
 	{
 		ra(stack_a);
+		write(1, "ra\n", 3);
 	}
 	pb(stack_a, stack_b);
-	little = get_little_min(*stack_a);
+	little = get_min(*stack_a);
 	while (*(long long int *)(*stack_a)->content != little)
 	{
 		ra(stack_a);
+		write(1, "ra\n", 3);
 	}
 	pb(stack_a, stack_b);
 	resolve_2_and_3(stack_a);
